@@ -33,7 +33,7 @@ int main()
 			cin>>mat[i][j];
 	loop(i,4)
 		loop(j,4)
-		{}
+		{
 			int sum=mat[i][j]+mat[i][j+1]+mat[i][j+2]+mat[i+1][j+1]+mat[i+2][j]+mat[i+2][j+1]+mat[i+2][j+2];
 			maxSum=max(maxSum,sum);
 		}
