@@ -27,8 +27,8 @@ using namespace std;
 int main()
 {
 	int n , q;
-	std::vector<int> seqList[MAXN];
-	cin>>n>>q;
+	vector<int> seqList[MAXN];
+	cin >> n >> q;
 	int lastAnswer = 0;
 	repeat(q)
 	{
@@ -36,15 +36,9 @@ int main()
 		cin >> a >> x >> y;
 		x = (x ^ lastAnswer) % n;
 		if (a == 1)
-		{
 			seqList[x].push_back(y);
-		}
 		else if (a == 2)
-		{
-			lastAnswer=seqList[x][y%seqList[x].size()];
-			cout<<lastAnswer<<endl;
-		}
+			cout << seqList[x][y % seqList[x].size()] << endl;
 	}
-	while (true);
 	return 0;
 }
