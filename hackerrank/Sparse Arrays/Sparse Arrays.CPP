@@ -12,7 +12,7 @@
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 2000
 
 #define X first
 #define Y second
@@ -24,15 +24,20 @@ using namespace std;
 #define eraseStr(str,str1) while(str.find(str1)!=-1){str.erase(str.find(str1), sizeof(str1)-1);}
 #define p(x,y) make_pair(x,y)
 
+string strings[MAXN];
+
 int main()
 {
-	int n,d;
-	cin>>n>>d;
-	int arr[MAXN];
+	int n,q;
+	cin>>n;
 	loop(i,n)
-		cin>>arr[i];
-	loop(i,n)
-		cout<<arr[(i+d)%n]<<" ";
-	cout<<endl;
+		cin>>strings[i];
+	cin>>q;
+	loop(i,q)
+	{
+		string x;
+		cin>>x;
+		cout<<count(strings, strings+n,x)<<(i!=q-1?"\n":"");
+	}
 	return 0;
 }
