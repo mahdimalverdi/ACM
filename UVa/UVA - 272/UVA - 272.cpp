@@ -15,7 +15,7 @@
 using namespace std;
 
 #define INF 99999
-#define MAXN 1000000000
+#define MAXN 100
 
 typedef long long ll;
 typedef vector<int> vi;
@@ -24,40 +24,32 @@ typedef vector<ii> vii;
 typedef set<int> si;
 typedef map<string, int> msi;
 
+
 #define X first
 #define Y second
 
 #define loop(x,n) for(int x = 0; x < n; ++x)
 #define foreach(x,arr) for(auto x:arr)
 #define repeat(x) while(x--)
-#define replaceStr(str,str1,str2) while(str.find(str1)!=-1){str.replace(str.find(str1), sizeof(str2)-1, str2);}
+#define replaceStr(str,str1,str2) while(str.find(str1)!=-1){str.replace(str.find(str1), sizeof(str1)-1, str2);}
 #define eraseStr(str,str1) while(str.find(str1)!=-1){str.erase(str.find(str1), sizeof(str1)-1);}
 #define p(x,y) make_pair(x,y)
 
 int main()
 {
-	int i, j;
-	while (cin >> i >> j )
+	string str;
+	int t=0;
+	while (getline(cin,str) )
 	{
-		printf("%i %i ", i, j );
-		if (i > j)
-			swap(i, j);
-		int maxt = 0;
-		for (; i <= j; i++)
+		while (str.find("\"")!=-1)
 		{
-			int n = i;
-			int t = 1;
-			while (n != 1 )
-			{
-				if (n % 2 == 1)
-					n = n * 3 + 1;
-				else
-					n /= 2;
-				t++;
-			}
-			maxt = max(t, maxt);
+			if(t%2==0)
+				str.replace(str.find("\""), sizeof("\"") - 1, "``");
+			else
+				str.replace(str.find("\""), sizeof("\"") - 1, "\'\'");
+			t++;
 		}
-		printf("%i\n", maxt);
+		cout<<str<<endl;
 	}
 	return 0;
 }
