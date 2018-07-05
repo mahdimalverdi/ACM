@@ -9,10 +9,21 @@
 #include <iomanip>
 #include <queue>
 #include <stack>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 200000
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+typedef set<int> si;
+typedef map<string, int> msi;
+
 
 #define X first
 #define Y second
@@ -24,24 +35,36 @@ using namespace std;
 #define eraseStr(str,str1) while(str.find(str1)!=-1){str.erase(str.find(str1), sizeof(str1)-1);}
 #define p(x,y) make_pair(x,y)
 
+std::map<int, int, greater<int>> mp;
+
 int main()
 {
-	int n , q;
-	std::vector<int> seqList[MAXN];
-	cin >> n >> q;
-	int lastAnswer = 0;
+	int n, q;
+	scanf("%i %i", &n, &q);
+	loop(i, n)
+	{
+		int x;
+		scanf("%i", &x);
+		mp[x]++;
+	}
+	string str = "";
 	repeat(q)
 	{
-		int a, x, y;
-		cin >> a >> x >> y;
-		x = (x ^ lastAnswer) % n;
-		if (a == 1)
-			seqList[x].push_back(y);
-		else if (a == 2)
+		int x;
+		scanf("%i", &x);
+		int sum = 0;
+		int count = 0;
+		foreach (item, mp)
 		{
-			lastAnswer = seqList[x][y % seqList[x].size()];
-			cout << lastAnswer << endl;
+			count += min((x - sum) / item.X, item.Y);
+			sum += item.X * min((x - sum) / item.X, item.Y);
 		}
+		if (sum == x)
+			str += to_string(count) + "\n";
+		else
+			str += "-1\n";
+
 	}
+	printf("%s", str.c_str());
 	return 0;
 }

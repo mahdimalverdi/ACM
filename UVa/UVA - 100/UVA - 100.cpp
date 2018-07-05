@@ -9,10 +9,20 @@
 #include <iomanip>
 #include <queue>
 #include <stack>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 1000000000
+
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> ii;
+typedef vector<ii> vii;
+typedef set<int> si;
+typedef map<string, int> msi;
 
 #define X first
 #define Y second
@@ -26,22 +36,30 @@ using namespace std;
 
 int main()
 {
-	int n , q;
-	std::vector<int> seqList[MAXN];
-	cin >> n >> q;
-	int lastAnswer = 0;
-	repeat(q)
+	int i, j;
+	while (cin >> i )
 	{
-		int a, x, y;
-		cin >> a >> x >> y;
-		x = (x ^ lastAnswer) % n;
-		if (a == 1)
-			seqList[x].push_back(y);
-		else if (a == 2)
+		cin>>j;
+		printf("%i %i \n", i, j );
+		if (i > j)
+			swap(i, j);
+		int k = i;
+		int maxt = 0;
+		for (; i <= j; i++)
 		{
-			lastAnswer = seqList[x][y % seqList[x].size()];
-			cout << lastAnswer << endl;
+			int n = i;
+			int t = 1;
+			while (n != 1 )
+			{
+				if (n % 2 == 1)
+					n = n * 3 + 1;
+				else
+					n /= 2;
+				t++;
+			}
+			maxt = max(t, maxt);
 		}
+		printf("%i\n", maxt);
 	}
 	return 0;
 }

@@ -9,10 +9,11 @@
 #include <iomanip>
 #include <queue>
 #include <stack>
+#include <math.h>
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 100
 
 #define X first
 #define Y second
@@ -26,22 +27,16 @@ using namespace std;
 
 int main()
 {
-	int n , q;
-	std::vector<int> seqList[MAXN];
-	cin >> n >> q;
-	int lastAnswer = 0;
-	repeat(q)
+	list<int> l;
+	int n;
+	cin>>n;
+	repeat(n)
 	{
-		int a, x, y;
-		cin >> a >> x >> y;
-		x = (x ^ lastAnswer) % n;
-		if (a == 1)
-			seqList[x].push_back(y);
-		else if (a == 2)
-		{
-			lastAnswer = seqList[x][y % seqList[x].size()];
-			cout << lastAnswer << endl;
-		}
+		int x;
+		cin>>x;
+		l.push_back(x);
 	}
+	foreach(item,l)
+		cout<<item<<endl;
 	return 0;
 }
