@@ -37,73 +37,51 @@ typedef map<string, int> msi;
 #define p(x,y) make_pair(x,y)
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y))
 
-bool mat[26][26];
-std::set<int> v;
-int n, m;
-int bfs()
+int arr[MAXN];
+
+int c = 0, n, mindepth = INF;
+
+void dfs(int depth)
 {
-	int sizev = 0;
-	int k = 0;
-	while (sizev != v.size() && v.size() != n)
+	if (depth > mindepth)
+		return;
+	bool flag = true;
+	loop(i, n - 1)
 	{
-		k++;
-		sizev = v.size();
-		std::set<int> v1;
-
-		foreach (i1, v)
+		if (arr[i] > arr[i + 1])
 		{
-			v1.insert(i1);
+			flag = false;
+			swap(arr[i], arr[i + 1]);
+			dfs(depth + 1);
+			swap(arr[i], arr[i + 1]);
 		}
-		foreach (i1, v1)
-		{
-			foreach (i2, v1)
-			{
-				if (i1 == i2)
-					continue;
-				foreach (i3, v1)
-				{
-					if (i1 == i3 || i2 == i3)
-						continue;
-					loop(i, 26)
-					{
-						if (mat[i1][i] == true && mat[i2][i] == true && mat[i3][i] == true)
-							v.insert(i);
-					}
-				}
-			}
-
-		}
-
 	}
-	return k;
+	if (flag)
+	{
+		if (mindepth > depth)
+		{
+			mindepth = depth;
+			c = 0;
+		}
+		if (mindepth > 0)
+			c++;
+	}
 }
 
 int main()
 {
-	while (scanf("%i", &n) != EOF)
+	scanf("%i", &n);
+	int k = 1;
+	while (n)
 	{
-		loop(i, 26)
-		loop(j, 26)
-		mat[i][j] = false;
-		v.clear();
-		scanf("%i", &m);
-		string str;
-		cin >> str;
-		v.insert(str[0] - 'A');
-		v.insert(str[1] - 'A');
-		v.insert(str[2] - 'A');
-		repeat(m)
-		{
-			char s[3];
-			scanf("%s", s);
-			mat[s[0] - 'A'][s[1] - 'A'] = true;
-			mat[s[1] - 'A'][s[0] - 'A'] = true;
-		}
-		int count =  bfs();
-		if (v.size() == n)
-			printf("WAKE UP IN, %i, YEARS\n", count );
-		else
-			printf("THIS BRAIN NEVER WAKES UP\n");
+		c = 0;
+		mindepth = INF;
+		loop(i, n)
+		scanf("%i", &arr[i]);
+		dfs(0);
+		printf("There are %i swap maps for input data set %i.\n", c, k++);
+		scanf("%i", &n);
 	}
+	while (true);
 	return 0;
 }

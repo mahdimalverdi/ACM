@@ -36,74 +36,52 @@ typedef map<string, int> msi;
 #define eraseStr(str,str1) while(str.find(str1)!=-1){str.erase(str.find(str1), str1.size());}
 #define p(x,y) make_pair(x,y)
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y))
-
-bool mat[26][26];
-std::set<int> v;
-int n, m;
-int bfs()
+struct cmp
 {
-	int sizev = 0;
-	int k = 0;
-	while (sizev != v.size() && v.size() != n)
+	bool operator()(const pair<double, int> & a , const pair<double, int> & b )
 	{
-		k++;
-		sizev = v.size();
-		std::set<int> v1;
-
-		foreach (i1, v)
-		{
-			v1.insert(i1);
-		}
-		foreach (i1, v1)
-		{
-			foreach (i2, v1)
-			{
-				if (i1 == i2)
-					continue;
-				foreach (i3, v1)
-				{
-					if (i1 == i3 || i2 == i3)
-						continue;
-					loop(i, 26)
-					{
-						if (mat[i1][i] == true && mat[i2][i] == true && mat[i3][i] == true)
-							v.insert(i);
-					}
-				}
-			}
-
-		}
+		if (a.X > b.X)
+			return true;
+		if (a.X < b.X)
+			return false;
+		if (a.Y > b.Y)
+			return false;
+		if (a.Y < b.Y)
+			return true;
+		return false;
 
 	}
-	return k;
-}
+};
 
 int main()
 {
-	while (scanf("%i", &n) != EOF)
+	int t;
+	scanf("%i", &t);
+	repeat(t)
 	{
-		loop(i, 26)
-		loop(j, 26)
-		mat[i][j] = false;
-		v.clear();
-		scanf("%i", &m);
 		string str;
-		cin >> str;
-		v.insert(str[0] - 'A');
-		v.insert(str[1] - 'A');
-		v.insert(str[2] - 'A');
-		repeat(m)
+		int n;
+		scanf("%i", &n);
+
+		set<pair<double, int>, cmp> s;
+		loop(i, n)
 		{
-			char s[3];
-			scanf("%s", s);
-			mat[s[0] - 'A'][s[1] - 'A'] = true;
-			mat[s[1] - 'A'][s[0] - 'A'] = true;
+			int x, y;
+			scanf("%i%i", &x, &y);
+			s.insert(p((double)y / x, i + 1));
 		}
-		int count =  bfs();
-		if (v.size() == n)
-			printf("WAKE UP IN, %i, YEARS\n", count );
-		else
-			printf("THIS BRAIN NEVER WAKES UP\n");
+		bool flag = false;
+		foreach (item, s)
+		{
+			if (flag)
+				printf(" ");
+			flag = true;
+			printf("%i", item.Y );
+		}
+		printf("\n");
+		if (t != 0)
+			printf("\n");
 	}
+	while (true);
 	return 0;
 }

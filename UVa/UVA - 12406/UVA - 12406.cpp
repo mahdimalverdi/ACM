@@ -37,73 +37,59 @@ typedef map<string, int> msi;
 #define p(x,y) make_pair(x,y)
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y))
 
-bool mat[26][26];
-std::set<int> v;
-int n, m;
-int bfs()
+std::set<long long> v;
+
+void dfs(int p, long long str)
 {
-	int sizev = 0;
-	int k = 0;
-	while (sizev != v.size() && v.size() != n)
+	if (p == 0)
 	{
-		k++;
-		sizev = v.size();
-		std::set<int> v1;
-
-		foreach (i1, v)
-		{
-			v1.insert(i1);
-		}
-		foreach (i1, v1)
-		{
-			foreach (i2, v1)
-			{
-				if (i1 == i2)
-					continue;
-				foreach (i3, v1)
-				{
-					if (i1 == i3 || i2 == i3)
-						continue;
-					loop(i, 26)
-					{
-						if (mat[i1][i] == true && mat[i2][i] == true && mat[i3][i] == true)
-							v.insert(i);
-					}
-				}
-			}
-
-		}
-
+		v.insert(str);
+		return;
 	}
-	return k;
+	dfs(p - 1, str*10 + 1);
+	dfs(p - 1, str*10 + 2);
 }
 
 int main()
 {
-	while (scanf("%i", &n) != EOF)
+	int t;
+	scanf("%i", &t);
+	loop(k, t)
 	{
-		loop(i, 26)
-		loop(j, 26)
-		mat[i][j] = false;
 		v.clear();
-		scanf("%i", &m);
-		string str;
-		cin >> str;
-		v.insert(str[0] - 'A');
-		v.insert(str[1] - 'A');
-		v.insert(str[2] - 'A');
-		repeat(m)
+		int p , q;
+		scanf("%i%i", &p, &q);
+		dfs(p, 0);
+		bool flag = false;
+		long long x = pow(2, q);
+		printf("Case %i:" , k + 1 );
+		long long min=99999999999999999,max=0;
+		foreach (item, v)
 		{
-			char s[3];
-			scanf("%s", s);
-			mat[s[0] - 'A'][s[1] - 'A'] = true;
-			mat[s[1] - 'A'][s[0] - 'A'] = true;
+			if (item % x == 0)
+			{
+				if(min>item)
+					min=item;
+				if(max<item)
+					max=item;
+				flag = true;
+			}
 		}
-		int count =  bfs();
-		if (v.size() == n)
-			printf("WAKE UP IN, %i, YEARS\n", count );
+
+		if (!flag)
+			printf(" impossible");
 		else
-			printf("THIS BRAIN NEVER WAKES UP\n");
+		{
+			if(min==max)
+			{
+				printf(" %lli", min);
+			}
+			else 
+			{
+				printf(" %lli %lli", min,max);
+			}
+		}
+		printf("\n");
 	}
 	return 0;
 }
