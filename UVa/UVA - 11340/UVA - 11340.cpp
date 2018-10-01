@@ -16,7 +16,7 @@
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 10001
 
 typedef long long ll;
 typedef vector<int> vi;
@@ -37,44 +37,35 @@ typedef map<string, int> msi;
 #define p(x,y) make_pair(x,y)
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y))
 
+char characters[MAXN];
+int amounts[MAXN];
+char str[MAXN];
 int main()
 {
 	int t;
 	scanf("%i", &t);
-	loop(k, t)
+	repeat(t)
 	{
 		int n;
+		int amount=0;
 		scanf("%i", &n);
-		int sum = 0;
-		int maxPath = 0;
-		int start = 0, end = 0, newstart = 0;
-		for(int i=1;i<n;i++)
+		loop(i, n)
 		{
-			int x;
-			scanf("%i", &x);
-			sum += x;
-			if (sum > maxPath || (sum == maxPath && end-start<i-newstart))
+			cin>>characters[i];
+			cin>>amounts[i];
+		}
+		int m;
+		scanf("%i", &m);
+			gets(str);
+		loop(i, m)
+		{
+			gets(str);
+			loop(j, n)
 			{
-				maxPath = sum;
-				start = newstart;
-				end = i;
-				cout<<"+"<<maxPath<<endl;
+				amount+= count(str,str+strlen(str),characters[j])*amounts[j];
 			}
-			if (sum < 0)
-			{
-				sum = 0;
-				newstart = i;
-			}
-			cout << i << " " << sum << " " << maxPath << endl;
 		}
-		if (maxPath > 0)
-		{
-			printf("The nicest part of route %i is between stops %i and %i\n", k + 1, start+1 , end+1 );
-		}
-		else
-		{
-			printf("Route %i has no nice parts\n", k + 1 );
-		}
+		printf("%.2f$\n",amount/100.0);
 	}
 	return 0;
 }

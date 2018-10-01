@@ -16,7 +16,7 @@
 using namespace std;
 
 #define INF 99999
-#define MAXN 100000
+#define MAXN 10000000
 
 typedef long long ll;
 typedef vector<int> vi;
@@ -37,44 +37,34 @@ typedef map<string, int> msi;
 #define p(x,y) make_pair(x,y)
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y))
 
+bool flags[MAXN];
 int main()
 {
-	int t;
-	scanf("%i", &t);
-	loop(k, t)
+	int n;
+	while (scanf("%i", &n) != EOF)
 	{
-		int n;
-		scanf("%i", &n);
-		int sum = 0;
-		int maxPath = 0;
-		int start = 0, end = 0, newstart = 0;
-		for(int i=1;i<n;i++)
+		loop(i, n)
 		{
-			int x;
-			scanf("%i", &x);
-			sum += x;
-			if (sum > maxPath || (sum == maxPath && end-start<i-newstart))
-			{
-				maxPath = sum;
-				start = newstart;
-				end = i;
-				cout<<"+"<<maxPath<<endl;
-			}
-			if (sum < 0)
-			{
-				sum = 0;
-				newstart = i;
-			}
-			cout << i << " " << sum << " " << maxPath << endl;
+			flags[i] = false;
 		}
-		if (maxPath > 0)
+		int x;
+		scanf("%i", &x);
+		loop(i, n - 1)
 		{
-			printf("The nicest part of route %i is between stops %i and %i\n", k + 1, start+1 , end+1 );
+			int y;
+			scanf("%i", &y);
+			flags[abs(y - x)] = true;
+			x = y;
 		}
+		bool flag = true;
+		loop(i, n - 1)
+		{
+			flag &= flags[i + 1] ;
+		}
+		if (flag)
+			printf("Jolly\n" );
 		else
-		{
-			printf("Route %i has no nice parts\n", k + 1 );
-		}
+			printf("Not jolly\n" );
 	}
 	return 0;
 }
