@@ -1,0 +1,22 @@
+//string
+getline(cin,string);
+toupper(char); //return int
+tolower(char); //return int
+cout<<fixed<<setprecision(4);
+reverse(cpy.begin(), cpy.end());
+
+//data structurs
+priority_queue<int> //max heap
+priority_queue<int,vector<int>,greater<int>> //min heap
+greater<int>
+
+//set
+find
+erase
+insert
+clear;
+
+//algorithm
+count(first_iterator, last_iterator,x)
+*max_element (first_iterator, last_iterator) 
+*min_element (first_iterator, last_iterator) 
