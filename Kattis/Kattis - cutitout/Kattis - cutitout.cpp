@@ -1,9 +1,22 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <list>
+#include <sstream>
+#include <iomanip>
+#include <queue>
+#include <stack>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 #define INF 99999
 #define MAXN 10000
-#define MOD 1000000007
 
 typedef long long ll;
 typedef vector<int> vi;
@@ -27,6 +40,7 @@ typedef map<string, int> msi;
 
 int main()
 {
+	
 	while (true);
 	return 0;
 }

@@ -20,3 +20,13 @@ clear;
 count(first_iterator, last_iterator,x)
 *max_element (first_iterator, last_iterator) 
 *min_element (first_iterator, last_iterator) 
+
+unordered_map
+
+int gcd(int a, int b) 
+{ 
+    if (b == 0) 
+        return a; 
+    return gcd(b, a % b);  
+      
+} 

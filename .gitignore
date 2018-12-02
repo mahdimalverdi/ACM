@@ -30,3 +30,29 @@
 *.exe
 *.out
 *.app
+contest 1/A.cpp
+contest 1/B.cpp
+contest 1/C.cpp
+contest 1/D.cpp
+contest 1/i.cpp
+contest 1/J.cpp
+contest 1/l.cpp
+contest2/b.cpp
+contest2/c.py
+contest2/e.py
+contest2/g.cpp
+contest2/i.cpp
+contest2/j.cpp
+contest3/a.cpp
+contest3/b.cpp
+contest3/d.cpp
+contest3/f.cpp
+contest3/h.cpp
+contest3/k.cpp
+contest4/a.cpp
+contest4/b.cpp
+contest4/c.cpp
+contest4/d.cpp
+contest4/e.cpp
+contest4/f.cpp
+contest4/g.cpp

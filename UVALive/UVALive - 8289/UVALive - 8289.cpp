@@ -1,4 +1,18 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <list>
+#include <sstream>
+#include <iomanip>
+#include <queue>
+#include <stack>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 #define INF 99999
@@ -25,8 +39,24 @@ typedef map<string, int> msi;
 #define distance(a1,a2) sqrt((a1.X-a2.X)*(a1.X-a2.X)+(a1.Y-a2.Y)*(a1.Y-a2.Y)) 
 
 
+
+
 int main()
 {
-	while (true);
+	int n;
+	scanf("%i",&n);
+	repeat(n)
+	{
+		int k,base,num;
+		scanf("%i%i%i",&k,&base,&num);
+		long long num2=0;
+		while(num>0)
+		{
+			num2+=((num%base)*(num%base));
+			num/=base;
+		}
+		printf("%i %lld\n",k,num2 );
+	}
+
 	return 0;
 }

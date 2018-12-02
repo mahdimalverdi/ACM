@@ -1,4 +1,18 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <algorithm>
+#include <set>
+#include <map>
+#include <list>
+#include <sstream>
+#include <iomanip>
+#include <queue>
+#include <stack>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
 using namespace std;
 
 #define INF 99999
@@ -27,6 +41,15 @@ typedef map<string, int> msi;
 
 int main()
 {
-	while (true);
+	int count=0,n;
+	cin>>n;
+	loop(i,n)
+	{
+		int x;
+		cin>>x;
+		if(x!=1)
+			count++;
+	}
+	cout<<count<<endl;
 	return 0;
 }
